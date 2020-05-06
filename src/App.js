@@ -38,6 +38,20 @@ class App extends Component {
       passing: '8px'
     };
 
+    let persons = null;
+
+    if (this.state.showPersons) {
+      persons = (
+        <div>
+          <Person 
+            name={this.state.persons[0].name} 
+            age={this.state.persons[0].age}
+            changed={this.nameChangeHandler}
+          />
+        </div>
+      );
+    }
+
     return (
       <div className="App">
         <h1>Hi, I'm a React app!</h1>
@@ -46,15 +60,7 @@ class App extends Component {
           onClick={this.togglePersonsHandler}>
           Switch name
         </button>
-        {this.state.showPersons === true ?
-          <div >
-            <Person 
-              name={this.state.persons[0].name} 
-              age={this.state.persons[0].age}
-              changed={this.nameChangeHandler}
-            />
-          </div> : null
-        }
+        {persons}
         
         <UserOutput username={this.state.username}></UserOutput>
         <UserOutput username={this.state.username}></UserOutput>
