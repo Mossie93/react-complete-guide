@@ -8,7 +8,8 @@ class App extends Component {
   state = {
     persons: [
       { name: 'moss', age: 17 },
-      { name: 'tree', age: 104 }
+      { name: 'tree', age: 104 },
+      { name: 'rock', age: 1600 }
     ],
     username: 'random name blabla',
     showPersons: false
@@ -17,13 +18,6 @@ class App extends Component {
   togglePersonsHandler = () => {
     const doesShow = this.state.showPersons;
     this.setState({showPersons: !doesShow})
-  }
-
-  nameChangeHandler = (event) => {
-    this.setState({persons: [
-      { name: event.target.value, age: 17 },
-      { name: 'tree', age: 104 }
-    ]})
   }
 
   usernameChangeHandler  = (event)=> {
@@ -43,11 +37,14 @@ class App extends Component {
     if (this.state.showPersons) {
       persons = (
         <div>
-          <Person 
-            name={this.state.persons[0].name} 
-            age={this.state.persons[0].age}
-            changed={this.nameChangeHandler}
-          />
+          {this.state.persons.map(person => {
+            return (
+              <Person 
+                name={person.name} 
+                age={person.age}
+              />
+            )
+          })}
         </div>
       );
     }
