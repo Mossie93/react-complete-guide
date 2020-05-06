@@ -10,18 +10,14 @@ class App extends Component {
       { name: 'moss', age: 17 },
       { name: 'tree', age: 104 }
     ],
-    username: 'random name blabla'
+    username: 'random name blabla',
+    showPersons: false
   }
 
-  switchNameHandler = (newName) => {
-    // DO NOT DO THIS
-    // this.state.persons[0].name = "Bobo";
-
-    // DO THIS INSTEAD
-    this.setState({persons: [
-      { name: newName, age: 17 },
-      { name: 'tree', age: 104 }
-    ]})
+  togglePersonsHandler = () => {
+    const doesShow = this.state.showPersons;
+    console.log(doesShow);
+    this.setState({showPersons: !doesShow})
   }
 
   nameChangeHandler = (event) => {
@@ -48,16 +44,19 @@ class App extends Component {
         <h1>Hi, I'm a React app!</h1>
         <button
           style={style}
-          onClick={() => this.switchNameHandler('Bobo')}>
+          onClick={this.togglePersonsHandler}>
           Switch name
         </button>
-        <Person 
-          name={this.state.persons[0].name} 
-          age={this.state.persons[0].age}
-          click={this.switchNameHandler.bind(this, 'Appa')}
-          changed={this.nameChangeHandler}
-        />
-
+        {this.state.showPersons === true ?
+          <div >
+            <Person 
+              name={this.state.persons[0].name} 
+              age={this.state.persons[0].age}
+              changed={this.nameChangeHandler}
+            />
+          </div> : null
+        }
+        
         <UserOutput username={this.state.username}></UserOutput>
         <UserOutput username={this.state.username}></UserOutput>
         <UserInput changed={this.usernameChangeHandler} username={this.state.username}></UserInput>
