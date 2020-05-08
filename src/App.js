@@ -7,9 +7,9 @@ import UserOutput from './UserOutput/UserOutput';
 class App extends Component {
   state = {
     persons: [
-      { name: 'moss', age: 17 },
-      { name: 'tree', age: 104 },
-      { name: 'rock', age: 1600 }
+      { id: 1, name: 'moss', age: 17 },
+      { id: 2, name: 'tree', age: 104 },
+      { id: 3, name: 'rock', age: 1600 }
     ],
     username: 'random name blabla',
     showPersons: false
@@ -45,7 +45,8 @@ class App extends Component {
         <div>
           {this.state.persons.map((person, index) => {
             return (
-              <Person 
+              <Person
+                key={person.id} 
                 name={person.name} 
                 age={person.age}
                 click={() => this.deletePersonHandler(index)}
