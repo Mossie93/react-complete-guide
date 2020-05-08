@@ -21,7 +21,8 @@ class App extends Component {
   }
 
   usernameChangeHandler  = (event)=> {
-    this.setState({username: event.target.value})
+    const username = event.target.value;
+    this.setState({username: username});
   }
 
   deletePersonHandler = (personIndex) => {
