@@ -4,6 +4,7 @@ import Person from './Person/Person';
 import UserInput from './UserInput/UserInput';
 import UserOutput from './UserOutput/UserOutput';
 import ValidationComponent from './ValidationComponent/ValidationComponent';
+import CharComponent from './CharComponent/CharComponent';
 
 class App extends Component {
   state = {
@@ -52,6 +53,12 @@ class App extends Component {
     this.setState({textToValidate: newText});
   }
 
+  removeLetter = (letterIndex, e) => {
+    const newText = this.state.textToValidate.split('');
+    newText.splice(letterIndex, 1);
+    this.setState({textToValidate: newText.join('')});
+  }
+
   render() {
     const style = {
       backgroundColor: 'white',
@@ -80,6 +87,21 @@ class App extends Component {
       );
     }
 
+    let lettersArray = this.state.textToValidate.split('');
+    let letters = (
+      <div>
+        {lettersArray.map((letter, index) => {
+          return (
+            <CharComponent 
+              key={letter + "-" + index}
+              letter={letter} 
+              click={() => this.removeLetter(index)}
+            />
+          )
+        })}
+      </div>
+    )
+
     return (
       <div className="App">
         <h1>Hi, I'm a React app!</h1>
@@ -96,9 +118,10 @@ class App extends Component {
           <UserInput changed={this.usernameChangeHandler} username={this.state.username}></UserInput>
         </div>
 
-        <div className="SecodHomework">
-          <input onChange={this.changeTextToValidate}></input>
+        <div className="SecondHomework">
+          <input onChange={this.changeTextToValidate} value={this.state.textToValidate}></input>
           <ValidationComponent textToValidate={this.state.textToValidate}/>
+          {letters}
         </div>
       </div>
     );
