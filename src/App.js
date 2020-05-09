@@ -5,7 +5,6 @@ import UserInput from './UserInput/UserInput';
 import UserOutput from './UserOutput/UserOutput';
 import ValidationComponent from './ValidationComponent/ValidationComponent';
 import CharComponent from './CharComponent/CharComponent';
-import Radium from 'radium';
 
 class App extends Component {
   state = {
@@ -149,4 +148,4 @@ class App extends Component {
   }
 }
 
-export default Radium(App);
+export default App;
