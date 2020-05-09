@@ -3,6 +3,7 @@ import './App.css';
 import Person from './Person/Person';
 import UserInput from './UserInput/UserInput';
 import UserOutput from './UserOutput/UserOutput';
+import ValidationComponent from './ValidationComponent/ValidationComponent';
 
 class App extends Component {
   state = {
@@ -12,7 +13,8 @@ class App extends Component {
       { id: 3, name: 'rock', age: 1600 }
     ],
     username: 'random name blabla',
-    showPersons: false
+    showPersons: false,
+    textToValidate: ''
   }
 
   togglePersonsHandler = () => {
@@ -43,6 +45,11 @@ class App extends Component {
     const persons = [...this.state.persons];
     persons[personIndex] = person;
     this.setState({persons: persons});
+  }
+
+  changeTextToValidate = (event) => {
+    const newText = event.target.value;
+    this.setState({textToValidate: newText});
   }
 
   render() {
@@ -83,9 +90,16 @@ class App extends Component {
         </button>
         {persons}
         
-        <UserOutput username={this.state.username}></UserOutput>
-        <UserOutput username={this.state.username}></UserOutput>
-        <UserInput changed={this.usernameChangeHandler} username={this.state.username}></UserInput>
+        <div className="FirstHomework">
+          <UserOutput username={this.state.username}></UserOutput>
+          <UserOutput username={this.state.username}></UserOutput>
+          <UserInput changed={this.usernameChangeHandler} username={this.state.username}></UserInput>
+        </div>
+
+        <div className="SecodHomework">
+          <input onChange={this.changeTextToValidate}></input>
+          <ValidationComponent textToValidate={this.state.textToValidate}/>
+        </div>
       </div>
     );
   }
