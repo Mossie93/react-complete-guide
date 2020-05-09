@@ -5,6 +5,20 @@ import UserInput from './UserInput/UserInput';
 import UserOutput from './UserOutput/UserOutput';
 import ValidationComponent from './ValidationComponent/ValidationComponent';
 import CharComponent from './CharComponent/CharComponent';
+import styled from 'styled-components';
+
+const StyledButton = styled.button`
+  background-color: ${props => props.alt ? 'red' : 'green'};
+  color: white;
+  font: inherit;
+  border: 1px solid blue;
+  passing: 8px;
+  
+  &:hover {
+    background-color: ${props => props.alt ? 'salmon' : 'lightgreen'};
+    cursor: pointer;
+  }
+`;
 
 class App extends Component {
   state = {
@@ -60,18 +74,6 @@ class App extends Component {
   }
 
   render() {
-    const style = {
-      backgroundColor: 'green',
-      color: 'white',
-      font: 'inherit',
-      border: '1px solid blue',
-      passing: '8px',
-      ':hover': {
-        backgroundColor: 'lightgreen',
-        cursor: 'pointer'
-      }
-    };
-
     let persons = null;
 
     if (this.state.showPersons) {
@@ -90,12 +92,6 @@ class App extends Component {
           })}
         </div>
       );
-
-      style.backgroundColor = 'red';
-      style[':hover'] = {
-        backgroundColor: 'salmon',
-        cursor: 'pointer'
-      }
     }
 
     let lettersArray = this.state.textToValidate.split('');
@@ -125,11 +121,11 @@ class App extends Component {
       <div className="App">
         <h1>Hi, I'm a React app!</h1>
         <p className={classes.join(' ')}>This is really working!</p>
-        <button
-          style={style}
+        <StyledButton
+          alt={this.state.showPersons}
           onClick={this.togglePersonsHandler}>
           Toggle persons
-        </button>
+        </StyledButton>
         {persons}
         
         <div className="FirstHomework">
