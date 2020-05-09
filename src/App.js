@@ -1,24 +1,10 @@
 import React, { Component } from 'react';
-import './App.css';
+import classes from './App.css';
 import Person from './Person/Person';
 import UserInput from './UserInput/UserInput';
 import UserOutput from './UserOutput/UserOutput';
 import ValidationComponent from './ValidationComponent/ValidationComponent';
 import CharComponent from './CharComponent/CharComponent';
-import styled from 'styled-components';
-
-const StyledButton = styled.button`
-  background-color: ${props => props.alt ? 'red' : 'green'};
-  color: white;
-  font: inherit;
-  border: 1px solid blue;
-  passing: 8px;
-  
-  &:hover {
-    background-color: ${props => props.alt ? 'salmon' : 'lightgreen'};
-    cursor: pointer;
-  }
-`;
 
 class App extends Component {
   state = {
@@ -75,6 +61,7 @@ class App extends Component {
 
   render() {
     let persons = null;
+    let btnClass = [classes.Button];
 
     if (this.state.showPersons) {
       persons = (
@@ -92,6 +79,8 @@ class App extends Component {
           })}
         </div>
       );
+
+      btnClass.push(classes.Red)
     }
 
     let lettersArray = this.state.textToValidate.split('');
@@ -109,23 +98,23 @@ class App extends Component {
       </div>
     )
 
-    let classes = [];
+    let assignedClasses = [];
     if (this.state.persons.length <= 2 ) {
-      classes.push('red');
+      assignedClasses.push(classes.red);
     }
     if (this.state.persons.length <= 1 ) {
-      classes.push('bold');
+      assignedClasses.push(classes.bold);
     }
 
     return (
-      <div className="App">
+      <div className={classes.App}>
         <h1>Hi, I'm a React app!</h1>
-        <p className={classes.join(' ')}>This is really working!</p>
-        <StyledButton
-          alt={this.state.showPersons}
+        <p className={assignedClasses.join(' ')}>This is really working!</p>
+        <button
+          className={btnClass.join(' ')}
           onClick={this.togglePersonsHandler}>
           Toggle persons
-        </StyledButton>
+        </button>
         {persons}
         
         <div className="FirstHomework">
