@@ -5,6 +5,7 @@ import UserInput from './UserInput/UserInput';
 import UserOutput from './UserOutput/UserOutput';
 import ValidationComponent from './ValidationComponent/ValidationComponent';
 import CharComponent from './CharComponent/CharComponent';
+import Radium from 'radium';
 
 class App extends Component {
   state = {
@@ -65,7 +66,11 @@ class App extends Component {
       color: 'white',
       font: 'inherit',
       border: '1px solid blue',
-      passing: '8px'
+      passing: '8px',
+      ':hover': {
+        backgroundColor: 'lightgreen',
+        cursor: 'pointer'
+      }
     };
 
     let persons = null;
@@ -88,6 +93,10 @@ class App extends Component {
       );
 
       style.backgroundColor = 'red';
+      style[':hover'] = {
+        backgroundColor: 'salmon',
+        cursor: 'pointer'
+      }
     }
 
     let lettersArray = this.state.textToValidate.split('');
@@ -140,4 +149,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default Radium(App);
