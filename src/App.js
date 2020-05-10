@@ -1,10 +1,6 @@
 import React, { Component } from 'react';
 import classes from './App.css';
 import Person from './Person/Person';
-import UserInput from './UserInput/UserInput';
-import UserOutput from './UserOutput/UserOutput';
-import ValidationComponent from './ValidationComponent/ValidationComponent';
-import CharComponent from './CharComponent/CharComponent';
 
 class App extends Component {
   state = {
@@ -13,19 +9,12 @@ class App extends Component {
       { id: 2, name: 'tree', age: 104 },
       { id: 3, name: 'rock', age: 1600 }
     ],
-    username: 'random name blabla',
-    showPersons: false,
-    textToValidate: ''
+    showPersons: false
   }
 
   togglePersonsHandler = () => {
     const doesShow = this.state.showPersons;
     this.setState({showPersons: !doesShow});
-  }
-
-  usernameChangeHandler  = (event)=> {
-    const username = event.target.value;
-    this.setState({username: username});
   }
 
   deletePersonHandler = (personIndex) => {
@@ -46,17 +35,6 @@ class App extends Component {
     const persons = [...this.state.persons];
     persons[personIndex] = person;
     this.setState({persons: persons});
-  }
-
-  changeTextToValidate = (event) => {
-    const newText = event.target.value;
-    this.setState({textToValidate: newText});
-  }
-
-  removeLetter = (letterIndex, e) => {
-    const newText = this.state.textToValidate.split('');
-    newText.splice(letterIndex, 1);
-    this.setState({textToValidate: newText.join('')});
   }
 
   render() {
@@ -83,21 +61,6 @@ class App extends Component {
       btnClass.push(classes.Red)
     }
 
-    let lettersArray = this.state.textToValidate.split('');
-    let letters = (
-      <div>
-        {lettersArray.map((letter, index) => {
-          return (
-            <CharComponent 
-              key={letter + "-" + index}
-              letter={letter} 
-              click={() => this.removeLetter(index)}
-            />
-          )
-        })}
-      </div>
-    )
-
     let assignedClasses = [];
     if (this.state.persons.length <= 2 ) {
       assignedClasses.push(classes.red);
@@ -116,18 +79,6 @@ class App extends Component {
           Toggle persons
         </button>
         {persons}
-        
-        <div className="FirstHomework">
-          <UserOutput username={this.state.username}></UserOutput>
-          <UserOutput username={this.state.username}></UserOutput>
-          <UserInput changed={this.usernameChangeHandler} username={this.state.username}></UserInput>
-        </div>
-
-        <div className="SecondHomework">
-          <input onChange={this.changeTextToValidate} value={this.state.textToValidate}></input>
-          <ValidationComponent textToValidate={this.state.textToValidate}/>
-          {letters}
-        </div>
       </div>
     );
   }
