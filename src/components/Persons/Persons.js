@@ -6,6 +6,14 @@ class Persons extends Component {
     console.log('[Persons.js] get derived state from props'); 
     return state;
   }
+
+  // Do: decide whether to continue and update  component
+  // Don't: cause side effects
+  // return true if component should upate, and false otherwise
+  shouldComponentUpate(nextProps, nextState) {
+    console.log('[Persons.js] shopuld component update');
+    return true;
+  }
   render() {
     console.log('[Persons.js] rendering...');
 
