@@ -19,6 +19,8 @@ class App extends Component {
   }
 
   // This is where you should update your state and return it
+  // Do: sync state to props
+  // Don't: cause side effects
   static getDerivedStateFromProps(props, state) {
     console.log('[App.js] get derived state from props', props);
     return state;
