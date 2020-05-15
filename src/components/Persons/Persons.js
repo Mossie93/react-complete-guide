@@ -14,6 +14,12 @@ class Persons extends Component {
     console.log('[Persons.js] shopuld component update');
     return true;
   }
+
+  // Do: last minute DOM opeartions, ex.g get current scroll position
+  // Don't: Cause side effects
+  getSnapshotBeforeUpdate() {
+    console.log('[Persons.js] get snapshot before update');
+  }
   render() {
     console.log('[Persons.js] rendering...');
 
