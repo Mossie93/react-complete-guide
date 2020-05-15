@@ -20,6 +20,13 @@ class Persons extends Component {
   getSnapshotBeforeUpdate() {
     console.log('[Persons.js] get snapshot before update');
   }
+
+  // Do: cause side effects, ex.g. http requests
+  // Don't: update state
+  componentDidUpdate() {
+    console.log('[Persons.js] component did update');
+  }
+
   render() {
     console.log('[Persons.js] rendering...');
 
