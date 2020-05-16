@@ -10,6 +10,7 @@ class Persons extends Component {
   // Do: decide whether to continue and update  component
   // Don't: cause side effects
   // return true if component should upate, and false otherwise
+  // If you want to check for every single prop in props, then remove this method, and use 'extends PureComponent' in class definition
   shouldComponentUpate(nextProps, nextState) {
     console.log('[Persons.js] shopuld component update');
     // remember that arrrays andd objects are reference-types "variables"
