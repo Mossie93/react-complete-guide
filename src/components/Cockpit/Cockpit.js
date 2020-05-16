@@ -20,7 +20,7 @@ const cockpit = (props) =>  {
     return () => {
       console.log('[Cockpit.js] cleanup work in useEffect');
     };
-  }, [props.persons]);
+  }, []);
 
   if (props.showPersons) {
     btnClass.push(classes.Red);
