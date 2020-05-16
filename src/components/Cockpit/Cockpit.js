@@ -12,16 +12,15 @@ const cockpit = (props) =>  {
   useEffect(() => {
     console.log('[Cockpit.js] use effect');
     // you can do http requests here
-    const timer = setTimeout(() => {
+    setTimeout(() => {
       alert('Data saved to cloud!');
     }, 1000);
 
     // this will run after (first) render cycle but before useEffect hook
     return () => {
-      clearTimeout(timer);
       console.log('[Cockpit.js] cleanup work in useEffect');
     };
-  }, []);
+  }, [props.persons]);
 
   if (props.showPersons) {
     btnClass.push(classes.Red);
