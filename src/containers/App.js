@@ -15,7 +15,8 @@ class App extends Component {
       { id: 2, name: 'tree', age: 104 },
       { id: 3, name: 'rock', age: 1600 }
     ],
-    showPersons: false
+    showPersons: false,
+    showCockpit: true,
   }
 
   // This is where you should update your state and return it
@@ -86,11 +87,14 @@ class App extends Component {
 
     return (
       <div className={classes.App}>
-        <Cockpit
+        <button onClick={() => {this.setState({showCockpit: false})}}>
+          Remove Cockpit
+        </button>
+        { this.state.showCockpit ? <Cockpit
           clicked={this.togglePersonsHandler}
           persons={this.state.persons}
           showPersons={this.state.showPersons}
-        />
+        /> : null }
         {persons}
       </div>
     );

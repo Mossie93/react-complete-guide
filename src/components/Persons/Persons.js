@@ -28,6 +28,11 @@ class Persons extends Component {
     console.log('[Persons.js] component did update', snapshot);
   }
 
+  // Use if you need to clean up stuff when unmounting component
+  componentWillUnmount() {
+    console.log('[Persons.js] component will unmount');
+  }
+
   render() {
     console.log('[Persons.js] rendering...');
 

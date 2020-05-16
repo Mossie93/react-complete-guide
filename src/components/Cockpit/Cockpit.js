@@ -15,6 +15,11 @@ const cockpit = (props) =>  {
     setTimeout(() => {
       alert('Data saved to cloud!');
     }, 1000);
+
+    // this will run after (first) render cycle but before useEffect hook
+    return () => {
+      console.log('[Cockpit.js] cleanup work in useEffect');
+    };
   }, [props.persons]);
 
   if (props.showPersons) {
