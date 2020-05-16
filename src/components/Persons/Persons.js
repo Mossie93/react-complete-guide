@@ -17,14 +17,15 @@ class Persons extends Component {
 
   // Do: last minute DOM opeartions, ex.g get current scroll position
   // Don't: Cause side effects
-  getSnapshotBeforeUpdate() {
+  getSnapshotBeforeUpdate(prevProps, prevState) {
     console.log('[Persons.js] get snapshot before update');
+    return { message: 'Snap!' };
   }
 
   // Do: cause side effects, ex.g. http requests
   // Don't: update state
-  componentDidUpdate() {
-    console.log('[Persons.js] component did update');
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    console.log('[Persons.js] component did update', snapshot);
   }
 
   render() {
