@@ -35,6 +35,12 @@ class App extends Component {
     console.log('[App.js] component did mount');
   }
 
+  // return true if component should update. return false otherwise.
+  shouldComponentUpdate(nextProps, nextState) {
+    console.log('[App.js] should component update');
+    return true;
+  }
+
   togglePersonsHandler = () => {
     const doesShow = this.state.showPersons;
     this.setState({showPersons: !doesShow});
