@@ -12,7 +12,12 @@ class Persons extends Component {
   // return true if component should upate, and false otherwise
   shouldComponentUpate(nextProps, nextState) {
     console.log('[Persons.js] shopuld component update');
-    return true;
+    // remember that arrrays andd objects are reference-types "variables"
+    if (nextProps.persons !== this.props.persons) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   // Do: last minute DOM opeartions, ex.g get current scroll position
