@@ -7,10 +7,15 @@ const cockpit = (props) =>  {
 
   // this will run for every render cycle of this component
   // it's like componentDidMount and componentDiDUpdate combined in one effect 
+  // by  adding props.persons as second arg you tell that it should run only when persons changed
+  // if you want to run it only upon first render, pass empty array as second arg
   useEffect(() => {
     console.log('[Cockpit.js] use effect');
     // you can do http requests here
-  });
+    setTimeout(() => {
+      alert('Data saved to cloud!');
+    }, 1000);
+  }, [props.persons]);
 
   if (props.showPersons) {
     btnClass.push(classes.Red);
