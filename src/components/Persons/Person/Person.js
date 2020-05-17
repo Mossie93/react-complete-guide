@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react';
+import withClass from '../../../hoc/withClass'
 import classes from './Person.css';
 
 class Person extends Component {
@@ -15,4 +16,4 @@ class Person extends Component {
   };
 };
 
-export default Person;
+export default withClass(Person, classes.Person);
