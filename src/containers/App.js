@@ -20,6 +20,7 @@ class App extends Component {
     showPersons: false,
     showCockpit: true,
     changeCounter: 0,
+    authenticated: false,
   }
 
   // This is where you should update your state and return it
@@ -62,6 +63,10 @@ class App extends Component {
     this.setState({persons: persons});
   }
 
+  loginHandler = () => {
+    this.setState({authenticated: true});
+  };
+
   nameChangedHandler = (event, id) => {
     const personIndex = this.state.persons.findIndex(p => {
       return p.id === id;
@@ -93,7 +98,8 @@ class App extends Component {
         <Persons
           clicked={this.deletePersonHandler}
           changed={this.nameChangedHandler}
-          persons={this.state.persons}  
+          persons={this.state.persons}
+          isAuthenticated={this.state.authenticated}  
         />
       );
     }
@@ -107,6 +113,7 @@ class App extends Component {
           clicked={this.togglePersonsHandler}
           personsLength={this.state.persons.length}
           showPersons={this.state.showPersons}
+          login={this.loginHandler}
         /> : null }
         {persons}
       </Aux>
