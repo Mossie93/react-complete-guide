@@ -1,7 +1,8 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import classes from './Cockpit.css';
 
 const cockpit = (props) =>  {
+  const toggleButtonRef = useRef(null);
   let btnClass = [''];
   let assignedClasses = [];
 
@@ -15,6 +16,8 @@ const cockpit = (props) =>  {
     setTimeout(() => {
       alert('Data saved to cloud!');
     }, 1000);
+
+    toggleButtonRef.current.click();
 
     // this will run after (first) render cycle but before useEffect hook
     return () => {
@@ -39,7 +42,9 @@ const cockpit = (props) =>  {
       <p className={assignedClasses.join(' ')}>This is really working!</p>
       <button
         className={btnClass.join(' ')}
-        onClick={props.clicked}>
+        onClick={props.clicked}
+        ref={toggleButtonRef}
+      >
         Toggle persons
       </button>
     </div>
