@@ -5,6 +5,10 @@ import withClass from '../../../hoc/withClass'
 import classes from './Person.css';
 
 class Person extends Component {
+  componentDidMount() {
+    this.inputElement.focus();
+  }
+
   render() {
     console.log('[Person.js] rendering...');
 
@@ -12,7 +16,13 @@ class Person extends Component {
       <Fragment>
         <p onClick={this.props.click}>I'm a {this.props.name}, I'm {this.props.age} years old</p>
         <p>{this.props.children}</p>
-        <input type="text" onChange={this.props.changed} value={this.props.name}></input>
+        <input 
+          type="text"
+          ref={(inputEl) => {this.inputElement = inputEl}}
+          onChange={this.props.changed} 
+          value={this.props.name}
+        >  
+        </input>
       </Fragment>
     );
   };
