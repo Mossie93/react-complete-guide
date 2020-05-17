@@ -19,6 +19,7 @@ class App extends Component {
     ],
     showPersons: false,
     showCockpit: true,
+    changeCounter: 0,
   }
 
   // This is where you should update your state and return it
@@ -70,7 +71,17 @@ class App extends Component {
     person.name = event.target.value;
     const persons = [...this.state.persons];
     persons[personIndex] = person;
-    this.setState({persons: persons});
+
+    // Remember! setState is not guaranteed toe execute and finish immediately!
+    // this.setState({persons: persons, changeCounter: this.state.changeCounter + 1});
+
+    // So here is the workaround:
+    this.setState((prevState, _props) => {
+      return {
+        persons: persons,
+        changeCounter: prevState.changeCounter + 1
+      }
+    });
   }
 
   render() {
